@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>/Users/sunlei/Documents/Gridea/output</id>
+    <title>Gridea</title>
+    <updated>2019-07-15T05:51:57.916Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="/Users/sunlei/Documents/Gridea/output"/>
+    <link rel="self" href="/Users/sunlei/Documents/Gridea/output/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>/Users/sunlei/Documents/Gridea/output/images/avatar.png</logo>
+    <icon>/Users/sunlei/Documents/Gridea/output/favicon.ico</icon>
+    <rights>All rights reserved 2019, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[React Native]]></title>
+        <id>/Users/sunlei/Documents/Gridea/output/post/react-native/index.html</id>
+        <link href="/Users/sunlei/Documents/Gridea/output/post/react-native/index.html">
+        </link>
+        <updated>2019-07-10T08:40:24.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="使用步骤">使用步骤</h2>
+<pre><code>yarn
+cd ios &amp;&amp; pod install &amp;&amp; cd ../
+</code></pre>
+<h2 id="问题">问题</h2>
+<h4 id="1-vocode-样式不提示">1、vocode 样式不提示</h4>
+<h4 id="解决方法">解决方法</h4>
+<p><a href="https://github.com/Microsoft/vscode-react-native/issues/379#issuecomment-274451928">vscode-react-native</a></p>
+<p>点击 StyleSheet 进入到源码</p>
+<pre><code>import { StyleSheet } from 'react-native'
+</code></pre>
+<p>将</p>
+<pre><code>    type NamedStyles&lt;T&gt; = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle };
+    /**
+    * Creates a StyleSheet style reference from the given object.
+    */
+    export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T): T;
+</code></pre>
+<p>替换为</p>
+<pre><code>    type Style = ViewStyle | TextStyle | ImageStyle;
+    interface Styles {
+        [style: string]: Style
+    }
+    export function create(styles: Styles): any;
+</code></pre>
+<h4 id="2-报错">2、报错</h4>
+<pre><code>Invariant Violation: Text strings must be rendered within a &lt;Text&gt; component.
+</code></pre>
+<h4 id="解决方法-2">解决方法</h4>
+<p><a href="https://github.com/iyegoroff/react-native-text-gradient#readme">react-native-text-gradient#readme</a></p>
+<pre><code>node node_modules/react-native-text-gradient/patch-rn.js
+</code></pre>
+<h4 id="3-ios-textinput输入拼音时算作长度">3、iOS TextInput输入拼音时算作长度</h4>
+<h4 id="解决方法-3">解决方法</h4>
+<p>进入</p>
+<pre><code>node_modules/react-native/Libraries/Text/TextInput/RCTBaseTextInputView.m
+
+- (void)textInputDidChange
+
+</code></pre>
+<p>改为</p>
+<pre><code>  _nativeEventCount++;
+  
+  NSString *pinyin = @&quot;&quot;;
+  NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage; // 键盘输入模式
+  if ([lang isEqualToString:@&quot;zh-Hans&quot;]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
+    UITextRange *selectedRange = [backedTextInputView markedTextRange];
+    NSString * newText = [backedTextInputView textInRange:selectedRange];
+    if (newText) {
+      pinyin = newText;
+    }
+  }
+
+  if (_onChange) {
+    _onChange(@{
+       @&quot;text&quot;: self.attributedText.string,
+       @&quot;target&quot;: self.reactTag,
+       @&quot;eventCount&quot;: @(_nativeEventCount),
+       @&quot;pinyin&quot;: pinyin
+    });
+  }
+</code></pre>
+<h2 id="使用react-native-linear-gradient-注意事项">使用react-native-linear-gradient 注意事项</h2>
+<h3 id="1-水平布局时-要把xy都写全否则安卓会崩溃">1、水平布局时 要把x，y都写全，否则安卓会崩溃</h3>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>/Users/sunlei/Documents/Gridea/output/post/hello-gridea/index.html</id>
+        <link href="/Users/sunlei/Documents/Gridea/output/post/hello-gridea/index.html">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="http://hvenotes.fehey.com/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>𝖶𝗂𝗇𝖽𝗈𝗐𝗌</strong> 或 <strong>𝖬𝖺𝖼𝖮𝖲</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>

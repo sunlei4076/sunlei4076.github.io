@@ -1,0 +1,184 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>React Native | Gridea</title>
+<link rel="shortcut icon" href="/Users/sunlei/Documents/Gridea/output/favicon.ico?v=1563169905843">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="/Users/sunlei/Documents/Gridea/output/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="/Users/sunlei/Documents/Gridea/output">
+  <img class="avatar" src="/Users/sunlei/Documents/Gridea/output/images/avatar.png?v=1563169905843" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/Users/sunlei/Documents/Gridea/output//index.html" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/Users/sunlei/Documents/Gridea/output/archives/index.html" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/Users/sunlei/Documents/Gridea/output/tags/index.html" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/Users/sunlei/Documents/Gridea/output/post/about/index.html" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              React Native
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-07-10 ·
+              </time>
+              
+            </div>
+            
+              <div class="post-feature-image" style="background-image: url('file:////Users/sunlei/Documents/Gridea/output/post-images/react-native.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="使用步骤">使用步骤</h2>
+<pre><code>yarn
+cd ios &amp;&amp; pod install &amp;&amp; cd ../
+</code></pre>
+<h2 id="问题">问题</h2>
+<h4 id="1-vocode-样式不提示">1、vocode 样式不提示</h4>
+<h4 id="解决方法">解决方法</h4>
+<p><a href="https://github.com/Microsoft/vscode-react-native/issues/379#issuecomment-274451928">vscode-react-native</a></p>
+<p>点击 StyleSheet 进入到源码</p>
+<pre><code>import { StyleSheet } from 'react-native'
+</code></pre>
+<p>将</p>
+<pre><code>    type NamedStyles&lt;T&gt; = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle };
+    /**
+    * Creates a StyleSheet style reference from the given object.
+    */
+    export function create&lt;T extends NamedStyles&lt;T&gt; | NamedStyles&lt;any&gt;&gt;(styles: T): T;
+</code></pre>
+<p>替换为</p>
+<pre><code>    type Style = ViewStyle | TextStyle | ImageStyle;
+    interface Styles {
+        [style: string]: Style
+    }
+    export function create(styles: Styles): any;
+</code></pre>
+<h4 id="2-报错">2、报错</h4>
+<pre><code>Invariant Violation: Text strings must be rendered within a &lt;Text&gt; component.
+</code></pre>
+<h4 id="解决方法-2">解决方法</h4>
+<p><a href="https://github.com/iyegoroff/react-native-text-gradient#readme">react-native-text-gradient#readme</a></p>
+<pre><code>node node_modules/react-native-text-gradient/patch-rn.js
+</code></pre>
+<h4 id="3-ios-textinput输入拼音时算作长度">3、iOS TextInput输入拼音时算作长度</h4>
+<h4 id="解决方法-3">解决方法</h4>
+<p>进入</p>
+<pre><code>node_modules/react-native/Libraries/Text/TextInput/RCTBaseTextInputView.m
+
+- (void)textInputDidChange
+
+</code></pre>
+<p>改为</p>
+<pre><code>  _nativeEventCount++;
+  
+  NSString *pinyin = @&quot;&quot;;
+  NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage; // 键盘输入模式
+  if ([lang isEqualToString:@&quot;zh-Hans&quot;]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
+    UITextRange *selectedRange = [backedTextInputView markedTextRange];
+    NSString * newText = [backedTextInputView textInRange:selectedRange];
+    if (newText) {
+      pinyin = newText;
+    }
+  }
+
+  if (_onChange) {
+    _onChange(@{
+       @&quot;text&quot;: self.attributedText.string,
+       @&quot;target&quot;: self.reactTag,
+       @&quot;eventCount&quot;: @(_nativeEventCount),
+       @&quot;pinyin&quot;: pinyin
+    });
+  }
+</code></pre>
+<h2 id="使用react-native-linear-gradient-注意事项">使用react-native-linear-gradient 注意事项</h2>
+<h3 id="1-水平布局时-要把xy都写全否则安卓会崩溃">1、水平布局时 要把x，y都写全，否则安卓会崩溃</h3>
+
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="/Users/sunlei/Documents/Gridea/output/post/hello-gridea/index.html">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="/Users/sunlei/Documents/Gridea/output/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
