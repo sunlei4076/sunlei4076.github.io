@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>React Native | Gridea</title>
-<link rel="shortcut icon" href="https://sunlei4076.github.io/favicon.ico?v=1566532728680">
+<link rel="shortcut icon" href="https://sunlei4076.github.io/favicon.ico?v=1566533430384">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://sunlei4076.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://sunlei4076.github.io">
-  <img class="avatar" src="https://sunlei4076.github.io/images/avatar.png?v=1566532728680" alt="">
+  <img class="avatar" src="https://sunlei4076.github.io/images/avatar.png?v=1566533430384" alt="">
   </a>
   <h1 class="site-title">
     Gridea
@@ -81,9 +81,13 @@
                 · 2019-07-10 ·
               </time>
               
+                <a href="https://sunlei4076.github.io/tag/YA380S3EB" class="post-tag">
+                  # react-native
+                </a>
+              
             </div>
             
-              <div class="post-feature-image" style="background-image: url('https://sunlei4076.github.io/post-images/react-native.jpg')">
+              <div class="post-feature-image" style="background-image: url('https://sunlei4076.github.io/post-images/react-native开发注意事项.jpg')">
               </div>
             
             <div class="post-content">
@@ -151,6 +155,43 @@ cd ios &amp;&amp; pod install &amp;&amp; cd ../
 </code></pre>
 <h2 id="使用react-native-linear-gradient-注意事项">使用react-native-linear-gradient 注意事项</h2>
 <h3 id="1-水平布局时-要把xy都写全否则安卓会崩溃">1、水平布局时 要把x，y都写全，否则安卓会崩溃</h3>
+<h2 id="图片上传-注意事项">图片上传 注意事项</h2>
+<h3 id="1-一定要加上type否则安卓无法上传图片">1、一定要加上type，否则安卓无法上传图片</h3>
+<pre><code> const file = { uri, name: imgName, type: mime}
+</code></pre>
+<h2 id="吸顶效果的示例链接">吸顶效果的示例链接</h2>
+<pre><code> https://github.com/Micjoyce/ScrollViewWithTabView
+ https://snack.expo.io/@satya164/collapsible-header-with-tabview
+ https://snack.expo.io/By0FEomKf
+</code></pre>
+<h2 id="android-90-cleartext-communication-to-dailyapprenzhichucn-not-permitted-by-network-security-policy">Android 9.0 CLEARTEXT communication to dailyapp.renzhichu.cn not permitted by network security policy</h2>
+<pre><code>原因：原因是Android P系统限制了明文流量的网络请求，之下的版本没有影响，所以okhttp3会抛出该异常。
+解决方法
+在res目录下新建xml文件夹，文件夹里面创建network_security_config.xml 文件；
+文件内容
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;network-security-config&gt;
+&lt;base-config cleartextTrafficPermitted=&quot;true&quot; /&gt;
+&lt;/network-security-config&gt;
+然后在 AndroidManifest.xml 的application 标签加上
+android:networkSecurityConfig=&quot;@xml/network_security_config&quot;
+</code></pre>
+<h2 id="ios-iap-沙盒账号">IOS IAP 沙盒账号</h2>
+<pre><code>zhichutest@zhichu.com
+zhichuTEST123
+
+zhichutest1@zhichu.com
+zhichuTEST123
+</code></pre>
+<h2 id="ios-xcode-删除多余的配置文件">IOS xcode 删除多余的配置文件</h2>
+<pre><code>open ~/Library/MobileDevice/Provisioning\ Profiles/
+</code></pre>
+<h2 id="ios-检查idfa">IOS 检查IDFA</h2>
+<pre><code>grep -r advertisingIdentifier .
+</code></pre>
+<h2 id="iosandorid-logo制作">IOS/ANDORID logo制作</h2>
+<pre><code>http://icon.wuruihong.com/
+</code></pre>
 
             </div>
           </article>
