@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>/Users/sunlei/Documents/Gridea/output</id>
+    <id>https://sunlei4076.github.io/</id>
     <title>Gridea</title>
-    <updated>2019-07-15T05:51:57.916Z</updated>
+    <updated>2019-08-23T02:39:32.635Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="/Users/sunlei/Documents/Gridea/output"/>
-    <link rel="self" href="/Users/sunlei/Documents/Gridea/output/atom.xml"/>
+    <link rel="alternate" href="https://sunlei4076.github.io/"/>
+    <link rel="self" href="https://sunlei4076.github.io//atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>/Users/sunlei/Documents/Gridea/output/images/avatar.png</logo>
-    <icon>/Users/sunlei/Documents/Gridea/output/favicon.ico</icon>
+    <logo>https://sunlei4076.github.io//images/avatar.png</logo>
+    <icon>https://sunlei4076.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[React Native]]></title>
-        <id>/Users/sunlei/Documents/Gridea/output/post/react-native/index.html</id>
-        <link href="/Users/sunlei/Documents/Gridea/output/post/react-native/index.html">
+        <id>https://sunlei4076.github.io//post/react-native</id>
+        <link href="https://sunlei4076.github.io//post/react-native">
         </link>
         <updated>2019-07-10T08:40:24.000Z</updated>
         <content type="html"><![CDATA[<h2 id="使用步骤">使用步骤</h2>
@@ -84,8 +84,8 @@ cd ios &amp;&amp; pod install &amp;&amp; cd ../
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>/Users/sunlei/Documents/Gridea/output/post/hello-gridea/index.html</id>
-        <link href="/Users/sunlei/Documents/Gridea/output/post/hello-gridea/index.html">
+        <id>https://sunlei4076.github.io//post/hello-gridea</id>
+        <link href="https://sunlei4076.github.io//post/hello-gridea">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
