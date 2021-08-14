@@ -20,7 +20,7 @@
             "use strict";
 
             document.onreadystatechange = function () {
-              if (document.readyState == "complete") {
+              if (document.readyState == "complete" && location.href.indexOf('?bookPath=http') === -1 ) {
                 window.reader = ePubReader("./books/Fullstack.Vue.3.r13.2021.2.epub", {
                    restore: true
                  });
